@@ -2,21 +2,305 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>しゃるのセール情報。</title>
-<meta name="description" content="イヤホン・DAC・アンプのセール価格とクーポンをまとめています。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://schallxd.github.io/sale/">
 <meta property="og:title" content="しゃるのセール情報。">
 <meta property="og:description" content="イヤホン・DAC・アンプのセール価格とクーポンをまとめています。">
 <meta property="og:image" content="https://schallxd.github.io/sale/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
-<!-- 転送先：セールページ（Claudeの管理画面で更新している本体） -->
-<meta http-equiv="refresh" content="0; url=https://claude.ai/artifact/6iMTK6tua9a8rgjEaWztMi">
-<script>location.replace("https://claude.ai/artifact/6iMTK6tua9a8rgjEaWztMi");</script>
-<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#F3ECDD;color:#2B2420;font-family:"Hiragino Maru Gothic ProN",Meiryo,sans-serif;text-align:center;padding:0 16px}a{color:#C2341C;font-weight:700}</style>
+<meta name="description" content="しゃるのセール情報。イヤホン・DAC・アンプのセール価格とクーポンをまとめています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style id="css">
+/* 店頭POP：生成りの紙、赤い値札、焦げ茶のインク */
+:root{
+  color-scheme:light;
+  --paper:#F3ECDD; --card:#FFFDF7; --ink:#2B2420; --muted:#6A5F55; --red:#C2341C; --red-dark:#8F2412;
+  --ticket:#FFF4D6; --ticket-line:#9C7A3E; --kraft:rgba(200,164,114,.65); --wood:#7A5A38; --shadow:#DCCDB0; --line:#CDBB9A;
+  --display:"Dela Gothic One","Zen Maru Gothic",sans-serif; --hand:"Zen Kurenaido","Zen Maru Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Meiryo,sans-serif;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:11;background:var(--paper)}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--red)}a:hover{color:var(--red-dark)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+.site-head{padding-block:22px 18px;border-bottom:2px dashed var(--line)}
+.sign{display:inline-block;font-size:12px;font-weight:700;color:var(--paper);background:var(--ink);border-radius:4px;padding:3px 8px}
+.site-head h1{margin:8px 0 6px;font-family:var(--display);font-weight:400;font-size:clamp(26px,6vw,44px);letter-spacing:.02em}
+.meta{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--muted)}
+.notice{margin:14px 0 0;padding:10px 12px;border:1.5px solid var(--red);border-radius:4px;background:var(--card);font-size:12px;line-height:1.7}
+.notice b{color:var(--red)}
+
+.featured{padding-block:22px 8px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.sec-head h2{margin:0;font-family:var(--hand);font-weight:400;font-size:26px}
+.sec-head h2 em{font-style:normal;color:var(--red)}
+.swipe-hint{font-size:12px;color:var(--muted)}
+.carousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:16px 16px 18px;margin:0 -16px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.pop{flex:0 0 85%;scroll-snap-align:center;position:relative;background:var(--card);border-radius:4px;box-shadow:0 2px 0 var(--shadow),0 8px 18px rgba(80,60,30,.12);display:flex;flex-direction:column;padding:16px;gap:8px}
+.pop:nth-child(odd){transform:rotate(-.8deg)}.pop:nth-child(even){transform:rotate(.6deg)}
+.pop::before{content:"";position:absolute;top:-9px;left:50%;width:86px;height:20px;margin-left:-43px;background:var(--kraft);transform:rotate(-3deg)}
+.pop-visual{height:150px;border-radius:2px;background:#EFE8DA;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pop-visual img{width:100%;height:100%;object-fit:contain;background:#fff}
+.pop-visual.tile{height:auto;padding:14px;justify-content:flex-start;gap:12px;background:#EFE8DA}
+.pop-visual.tile .icon{flex:none;width:44px;height:44px;color:var(--ink)}
+.pop-visual .tile-brand{font-family:var(--display);font-size:22px;letter-spacing:.04em;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pop-comment{margin:0;font-family:var(--hand);font-size:19px;line-height:1.4;color:var(--red)}
+.pop-brand{font-size:12px;color:var(--muted)}
+.pop-name{margin:0;font-size:20px;font-weight:700;line-height:1.3}
+.pop-price{display:flex;align-items:center;gap:12px}
+.pop-price .price{font-size:28px}
+.pop .buy{margin-top:auto}
+.stamp{flex:none;width:56px;height:56px;border-radius:50%;background:var(--red);color:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05;transform:rotate(8deg)}
+.stamp b{font-family:var(--display);font-weight:400;font-size:15px}.stamp small{font-size:10px;font-weight:700}
+.dots{display:flex;justify-content:center;gap:6px}
+.dots span{width:6px;height:6px;border-radius:3px;background:var(--line);transition:width .2s}
+.dots span.on{width:18px;background:var(--ink)}
+
+.filter{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin-top:14px}
+.filter-inner{padding-block:10px 8px;display:flex;flex-direction:column;gap:8px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;height:38px;padding:0 14px;border-radius:6px;border:1.5px solid var(--ink);background:var(--card);font-size:13px;white-space:nowrap;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--red);border-color:var(--red);color:var(--card);font-weight:700}
+.chip.dark{background:var(--ink);color:var(--card);font-weight:700;border-color:var(--ink)}
+select.chip{padding-right:28px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 15px) 16px,calc(100% - 10px) 16px;background-size:5px 5px;background-repeat:no-repeat}
+.search{height:38px;width:100%;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);padding:0 12px;font-size:14px}
+.count{font-size:12px;color:var(--muted)}
+
+.shelves{padding-block:18px 8px}
+.shelf{margin-bottom:26px}
+.shelf h3{display:inline-flex;align-items:baseline;gap:8px;margin:0 0 12px;font-family:var(--hand);font-weight:400;font-size:21px;color:var(--card);background:var(--wood);border-radius:3px;padding:4px 14px}
+.shelf h3 small{font-family:"Zen Maru Gothic",sans-serif;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{background:var(--card);border-radius:4px;box-shadow:0 2px 0 var(--shadow);padding:12px;display:flex;flex-direction:column;gap:10px}
+.card-top{display:flex;gap:12px}
+.thumb{flex:none;width:80px;height:80px;border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:contain;background:#fff}
+.thumb.tile{border:1.5px solid var(--ink);background:var(--card)}
+.thumb .icon{width:30px;height:30px}
+.thumb .tile-brand{font-size:10px;font-weight:700;letter-spacing:.04em;max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.sub{font-size:12px;color:var(--muted)}
+.name{margin:0;font-size:16px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px}
+.price-label{width:100%;font-size:11px;color:var(--muted)}
+.price{font-family:var(--display);font-weight:400;font-size:22px;color:var(--red)}
+.off{font-size:12px;font-weight:700;color:var(--red)}
+.regular{font-size:12px;color:var(--muted)}
+.regular s{margin-left:3px}
+.ticket{background:var(--ticket);border:1.5px dashed var(--ticket-line);border-radius:4px;padding:8px 10px;display:flex;flex-direction:column;gap:6px}
+.ticket-title{font-size:11px;color:var(--muted)}
+.codes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.code{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;min-height:44px;padding:4px 10px;border-radius:4px;border:0;background:var(--red);color:var(--card);font-size:14px;font-weight:700;letter-spacing:.02em;cursor:pointer;text-align:left}
+.code span{font-size:10px;font-weight:500;opacity:.9}
+.card-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;color:var(--muted)}
+.buy{flex:none;font-size:14px;font-weight:700;text-decoration:none;padding:8px 0}
+.empty{padding:30px 0;text-align:center;color:var(--muted)}
+
+dialog.sheet{margin:auto auto 0;width:100%;max-width:640px;max-height:82vh;border:0;border-radius:12px 12px 0 0;padding:0;background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(43,36,32,.45)}
+.sheet-head{position:sticky;top:0;z-index:1;background:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:2px solid var(--ink)}
+.sheet-head h2{margin:0;font-family:var(--hand);font-weight:400;font-size:22px}
+.close{width:44px;height:44px;border:0;background:transparent;font-size:22px;cursor:pointer}
+.sheet-body{padding:12px 16px 24px;display:flex;flex-direction:column;gap:10px}
+.sheet-note{margin:0;font-size:12px;color:var(--muted);line-height:1.7}
+.coupon-row{background:var(--ticket);border:1.5px dashed var(--ticket-line);border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.coupon-row .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.coupon-row .kind{font-size:12px;color:var(--muted)}
+.coupon-row .targets{font-size:12px;line-height:1.6}
+.coupon-row .code{flex-direction:row;align-items:center;gap:6px}
+
+.fine{padding-block:20px 40px;border-top:2px dashed var(--line);font-size:12px;line-height:1.8;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:50;transform:translateX(-50%);background:var(--ink);color:var(--card);padding:10px 16px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .18s}
+.toast.show{opacity:1}
+
+@media (min-width:720px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pop{flex-basis:46%}
+}
+@media (min-width:1024px){
+  .carousel{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:12px;overflow:visible;margin:0;padding:16px 0 18px}
+  .pop{padding:12px}
+  .pop-price{flex-wrap:wrap;gap:6px 10px}
+  .pop-visual.tile{padding:12px;gap:8px}.pop-visual.tile .icon{width:32px;height:32px}.pop-visual .tile-brand{font-size:17px}
+  .pop .codes{grid-template-columns:1fr}
+  .dots,.swipe-hint{display:none}
+  .pop-price .price{font-size:22px}
+  .stamp{width:46px;height:46px}.stamp b{font-size:13px}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:420px){.fields{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-<p>しゃるのセール情報。へ移動しています…<br><a href="https://claude.ai/artifact/6iMTK6tua9a8rgjEaWztMi">移動しない場合はこちら</a></p>
+<template id="shell">
+<header class="site-head"><div class="wrap">
+  <span class="sign">本日のセール棚</span>
+  <h1>しゃるのセール情報。</h1>
+  <div class="meta" id="meta"></div>
+  <p class="notice" id="notice" hidden=""></p>
+</div></header>
+<main>
+  <section class="featured wrap" id="featured" aria-labelledby="featured-title">
+    <div class="sec-head"><h2 id="featured-title">店長しゃるの推し <em id="featured-count"></em>選</h2><span class="swipe-hint">スワイプ →</span></div>
+    <div class="carousel" id="carousel"></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+  </section>
+  <nav class="filter" aria-label="商品の絞り込み"><div class="wrap filter-inner">
+    <div class="chips" id="chips"><button type="button" class="chip dark" id="open-coupons">クーポン一覧</button></div>
+    <input class="search" id="search" type="search" placeholder="商品名・ブランドで探す" aria-label="商品名・ブランドで探す">
+    <div class="count" id="count" aria-live="polite"></div>
+  </div></nav>
+  <section class="shelves wrap" id="shelves" aria-label="商品の棚"></section>
+</main>
+<footer class="fine"><div class="wrap" id="fine"></div></footer>
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
+  <div class="sheet-head"><h2 id="sheet-title">クーポン一覧</h2><button type="button" class="close" id="close-sheet" aria-label="閉じる">×</button></div>
+  <div class="sheet-body" id="sheet-body"></div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+</template>
+<script type="application/json" id="site-data">{"campaign":{"title":"11.11 セール 2026","shop":"AliExpress","start":"","end":"","checkedAt":"2026-10-30","draftNotice":"","priceLabel":"クーポン利用時の参考価格","couponKinds":{"storeCode":"ストアクーポン","aliCode":"AliExpressクーポン"},"categoryOrder":["イヤホン","ヘッドホン","DAC・アンプ"],"priceBands":[{"id":"low","label":"〜1万円","min":0,"max":10000},{"id":"mid","label":"1〜3万円","min":10001,"max":30000},{"id":"high","label":"3万円〜","min":30001,"max":null}]},"products":[{"id":"001","brand":"AFUL","name":"MiracleOne","category":"イヤホン","salePriceJpy":25598,"regularPriceJpy":34283,"discountPct":25.33,"storeCode":null,"aliCode":"JPD1120","purchaseUrl":"https://www.aliexpress.com/item/1005013403054899.html","featured":true},{"id":"002","brand":"AFUL","name":"ICEBORNE","category":"DAC・アンプ","salePriceJpy":15999,"regularPriceJpy":23998,"discountPct":33.33,"storeCode":"JPD11HG10","aliCode":"JPD1110","purchaseUrl":"https://www.aliexpress.com/item/1005012253314766.html","featured":false},{"id":"003","brand":"AFUL","name":"Performer 8S","category":"イヤホン","salePriceJpy":42399,"regularPriceJpy":62398,"discountPct":32.05,"storeCode":"JPD11HG12","aliCode":"JPD1135","purchaseUrl":"https://www.aliexpress.com/item/1005010733634231.html","featured":false},{"id":"004","brand":"AFUL","name":"Performer 5+2","category":"イヤホン","salePriceJpy":25567,"regularPriceJpy":38398,"discountPct":33.42,"storeCode":"JPD11HG5","aliCode":"JPD1120","purchaseUrl":"https://www.aliexpress.com/item/1005007967664645.html","featured":false},{"id":"005","brand":"AFUL","name":"Dawn-X","category":"イヤホン","salePriceJpy":151872,"regularPriceJpy":207840,"discountPct":26.93,"storeCode":"JPD11HG20","aliCode":"JPD1170","purchaseUrl":"https://www.aliexpress.com/item/1005009921258338.html","featured":false},{"id":"006","brand":"AFUL","name":"Cantor","category":"イヤホン","salePriceJpy":83080,"regularPriceJpy":127840,"discountPct":35.01,"storeCode":"JPD11HG10","aliCode":"JPD1170","purchaseUrl":"https://www.aliexpress.com/item/1005007567713924.html","featured":false},{"id":"007","brand":"DUNU","name":"SUBSURGE 淵","category":"イヤホン","salePriceJpy":7838,"regularPriceJpy":10283,"discountPct":23.78,"storeCode":null,"aliCode":"JPD1105","purchaseUrl":"https://www.aliexpress.com/item/1005013469080252.html","featured":true},{"id":"008","brand":"DUNU","name":"Davinci VITRUVIAN","category":"イヤホン","salePriceJpy":39198,"regularPriceJpy":53331,"discountPct":26.5,"storeCode":null,"aliCode":"JPD1135","purchaseUrl":"https://www.aliexpress.com/item/1005013485902122.html","featured":true},{"id":"009","brand":"DUNU","name":"PRS6","category":"イヤホン","salePriceJpy":30256,"regularPriceJpy":39840,"discountPct":24.06,"storeCode":null,"aliCode":"JPD1135","purchaseUrl":"https://www.aliexpress.com/item/1005013154838255.html","featured":false},{"id":"010","brand":"DUNU","name":"Titan X","category":"イヤホン","salePriceJpy":4159,"regularPriceJpy":6398,"discountPct":35,"storeCode":"JPD1101","aliCode":"JPD1103","purchaseUrl":"https://www.aliexpress.com/item/1005011688328267.html","featured":false},{"id":"011","brand":"DUNU","name":"ITO","category":"イヤホン","salePriceJpy":21599,"regularPriceJpy":31998,"discountPct":32.5,"storeCode":"JPD11HG5","aliCode":"JPD1120","purchaseUrl":"https://www.aliexpress.com/item/1005009629363739.html","featured":false},{"id":"012","brand":"DUNU","name":"Davinci","category":"イヤホン","salePriceJpy":28639,"regularPriceJpy":47998,"discountPct":40.33,"storeCode":"JPD11HG5","aliCode":"JPD1135","purchaseUrl":"https://www.aliexpress.com/item/1005006968062969.html","featured":true},{"id":"013","brand":"DUNU","name":"DN242","category":"イヤホン","salePriceJpy":39072,"regularPriceJpy":55840,"discountPct":30.03,"storeCode":null,"aliCode":"JPD1135","purchaseUrl":"https://www.aliexpress.com/item/1005010273017157.html","featured":false},{"id":"014","brand":"DUNU","name":"DN142","category":"イヤホン","salePriceJpy":30266,"regularPriceJpy":39840,"discountPct":24.03,"storeCode":null,"aliCode":"JPD1120","purchaseUrl":"https://www.aliexpress.com/item/1005010382193221.html","featured":false},{"id":"015","brand":"JUZEAR","name":"Defiant","category":"イヤホン","salePriceJpy":10879,"regularPriceJpy":15998,"discountPct":32,"storeCode":"JPD1102","aliCode":"JPD1110","purchaseUrl":"https://www.aliexpress.com/item/1005008819170216.html","featured":false},{"id":"016","brand":"JUZEAR","name":"Fiesta","category":"イヤホン","salePriceJpy":12799,"regularPriceJpy":19198,"discountPct":33.33,"storeCode":"JPD11HG6","aliCode":"JPD1110","purchaseUrl":"https://www.aliexpress.com/item/1005012187899336.html","featured":false},{"id":"017","brand":"JUZEAR","name":"Nimbus","category":"イヤホン","salePriceJpy":6271,"regularPriceJpy":8798,"discountPct":28.72,"storeCode":"JPD1102","aliCode":"JPD1105","purchaseUrl":"https://www.aliexpress.com/item/1005012898663425.html","featured":false},{"id":"018","brand":"JUZEAR","name":"Light Shuttle","category":"イヤホン","salePriceJpy":21535,"regularPriceJpy":30398,"discountPct":29.16,"storeCode":"JPD11HG5","aliCode":"JPD1120","purchaseUrl":"https://www.aliexpress.com/item/1005012979516171.html","featured":false},{"id":"019","brand":"JUZEAR","name":"Defiant Gaming","category":"イヤホン","salePriceJpy":11999,"regularPriceJpy":17598,"discountPct":31.82,"storeCode":"JPD11HG3","aliCode":"JPD1110","purchaseUrl":"https://www.aliexpress.com/item/1005010757580410.html","featured":false},{"id":"020","brand":"JUZEAR","name":"Nebula","category":"イヤホン","salePriceJpy":14239,"regularPriceJpy":20798,"discountPct":31.54,"storeCode":"JPD11HG5","aliCode":"JPD1110","purchaseUrl":"https://www.aliexpress.com/item/1005012382358820.html","featured":false},{"id":"021","brand":"MuseHiFi","name":"M7","category":"DAC・アンプ","salePriceJpy":52000,"regularPriceJpy":72190,"discountPct":27.97,"storeCode":null,"aliCode":"JPD1154","purchaseUrl":"https://www.aliexpress.com/item/1005013473113626.html","featured":false},{"id":"022","brand":"MuseHiFi","name":"M3 Ultra","category":"DAC・アンプ","salePriceJpy":12703,"regularPriceJpy":17598,"discountPct":27.82,"storeCode":"JPD11HG3","aliCode":"JPD1110","purchaseUrl":"https://www.aliexpress.com/item/1005012249645174.html","featured":true},{"id":"023","brand":"MuseHiFi","name":"U3","category":"DAC・アンプ","salePriceJpy":3391,"regularPriceJpy":4798,"discountPct":29.32,"storeCode":"JPD1101","aliCode":"JPD1103","purchaseUrl":"https://www.aliexpress.com/item/1005013223092416.html","featured":false},{"id":"024","brand":"MuseHiFi","name":"M6 Double","category":"DAC・アンプ","salePriceJpy":45469,"regularPriceJpy":63840,"discountPct":28.78,"storeCode":"JPD11HG8","aliCode":"JPD1135","purchaseUrl":"https://www.aliexpress.com/item/1005010177372354.html","featured":false},{"id":"025","brand":"MuseHiFi","name":"Muse300","category":"DAC・アンプ","salePriceJpy":49919,"regularPriceJpy":75198,"discountPct":33.62,"storeCode":null,"aliCode":"JPD1154","purchaseUrl":"https://www.aliexpress.com/item/1005012799393761.html","featured":false},{"id":"026","brand":"PULA","name":"ARC","category":"イヤホン","salePriceJpy":2431,"regularPriceJpy":3838,"discountPct":36.66,"storeCode":"JPD1101","aliCode":"JPD1103","purchaseUrl":"https://www.aliexpress.com/item/1005012652328787.html","featured":false},{"id":"027","brand":"Binary","name":"EP321-MEMS","category":"イヤホン","salePriceJpy":35263,"regularPriceJpy":49598,"discountPct":28.9,"storeCode":"JPD11HG5","aliCode":"JPD1135","purchaseUrl":"https://www.aliexpress.com/item/1005010452473354.html","featured":false},{"id":"028","brand":"Binary","name":"1900","category":"イヤホン","salePriceJpy":27104,"regularPriceJpy":37600,"discountPct":27.91,"storeCode":"JPD11HG8","aliCode":"JPD1120","purchaseUrl":"https://www.aliexpress.com/item/1005012664713633.html","featured":false},{"id":"029","brand":"SeeAudio","name":"Neko","category":"イヤホン","salePriceJpy":87874,"regularPriceJpy":127840,"discountPct":31.26,"storeCode":"JPD11HG12","aliCode":"JPD1170","purchaseUrl":"https://www.aliexpress.com/item/3256805766224029.html","featured":false}]}</script>
+<script id="app">
+/* ページ本体。データは上の site-data にあり */
+(function () {
+
+const DATA = JSON.parse(document.getElementById("site-data").textContent);
+const campaign = DATA.campaign, products = DATA.products;
+document.body.prepend(document.getElementById("shell").content.cloneNode(true));
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const yen = n => n == null || n === "" ? "—" : "¥" + Number(n).toLocaleString("ja-JP");
+const pct = n => n == null ? "" : Math.round(n) + "%";
+const md = s => { if (!s) return ""; const d = new Date(s + "T00:00:00+09:00"); return isNaN(d) ? "" : (d.getMonth() + 1) + "/" + d.getDate(); };
+const ICONS = {
+  "イヤホン": '<svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6.5c4.5-1.8 10 1 10.5 6 .4 4-2.3 7-6 7.2-2.6.1-4.3-1.4-5.6-3.4"/><path d="M10 16.3c-1.3-2-1.8-4.4-1.4-6.4.3-1.4 1.2-2.6 2.4-3.4"/><path d="M8.7 11.5H5.5a1.5 1.5 0 0 0 0 3h3.6"/><path d="M15.5 19.7c.3 3.5 2.5 6 6.5 6.8"/><circle cx="15" cy="12.5" r="2.2"/></svg>',
+  "ヘッドホン": '<svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 19v-3a10 10 0 0 1 20 0v3"/><rect x="4" y="18" width="6" height="9" rx="2"/><rect x="22" y="18" width="6" height="9" rx="2"/></svg>',
+  "DAC・アンプ": '<svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="9" y="4" width="14" height="22" rx="3"/><circle cx="16" cy="19" r="3"/><path d="M13 9h6"/><path d="M16 26v3"/></svg>'
+};
+const icon = cat => ICONS[cat] || ICONS["イヤホン"];
+const visible = products.filter(p => !p.hidden);
+const couponsOf = p => Object.entries(campaign.couponKinds).filter(([k]) => p[k]).map(([k, label]) => ({ kind: k, label, code: p[k] }));
+const visual = (p, cls) => p.image
+  ? `<div class="${cls}"><img src="${esc(p.image)}" alt="${esc(p.brand + " " + p.name)}" loading="lazy"></div>`
+  : `<div class="${cls} tile" aria-hidden="true">${icon(p.category)}<span class="tile-brand">${esc(p.brand)}</span></div>`;
+const codeButtons = p => couponsOf(p).map(c => `<button type="button" class="code" data-copy="${esc(c.code)}" aria-label="${esc(c.label)} ${esc(c.code)} をコピー"><span>${esc(c.label)}</span>${esc(c.code)}</button>`).join("");
+const ticket = p => couponsOf(p).length ? `<div class="ticket"><span class="ticket-title">クーポンコード（タップでコピー）</span><div class="codes">${codeButtons(p)}</div></div>` : "";
+
+// ヘッダー
+$("meta").innerHTML = [esc(campaign.title), campaign.start && campaign.end ? `${md(campaign.start)}〜${md(campaign.end)}` : "", esc(campaign.shop), `全${visible.length}品`].filter(Boolean).map(s => `<span>${s}</span>`).join('<span aria-hidden="true">／</span>');
+if (campaign.draftNotice) { $("notice").hidden = false; $("notice").innerHTML = `<b>お知らせ：</b>${esc(campaign.draftNotice)}`; }
+
+// 注目
+const featured = visible.filter(p => p.featured);
+if (!featured.length) $("featured").hidden = true;
+$("featured-count").textContent = featured.length;
+$("carousel").innerHTML = featured.map(p => `<article class="pop">
+  ${visual(p, "pop-visual")}
+  ${p.comment ? `<p class="pop-comment">「${esc(p.comment)}」</p>` : ""}
+  <span class="pop-brand">${esc(p.brand)}・${esc(p.category)}${p.spec ? "・" + esc(p.spec) : ""}</span>
+  <h3 class="pop-name">${esc(p.name)}</h3>
+  <div class="pop-price"><div><div class="price-label">${esc(campaign.priceLabel)}</div><span class="price">${yen(p.salePriceJpy)}</span>${p.regularPriceJpy ? `<div class="regular">通常 <s>${yen(p.regularPriceJpy)}</s></div>` : ""}</div>
+  ${p.discountPct ? `<span class="stamp"><b>${pct(p.discountPct)}</b><small>OFF</small></span>` : ""}</div>
+  ${ticket(p)}
+  <a class="buy" href="${esc(p.purchaseUrl)}" target="_blank" rel="noopener">販売ページへ ↗</a>
+</article>`).join("");
+$("dots").innerHTML = featured.map((_, i) => `<span class="${i ? "" : "on"}"></span>`).join("");
+$("carousel").addEventListener("scroll", () => {
+  const c = $("carousel"), cards = [...c.children]; if (!cards.length) return;
+  const mid = c.scrollLeft + c.clientWidth / 2, dist = el => Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid);
+  let best = 0; cards.forEach((el, i) => { if (dist(el) < dist(cards[best])) best = i; });
+  [...$("dots").children].forEach((d, i) => d.classList.toggle("on", i === best));
+}, { passive: true });
+
+// 絞り込み
+const state = { band: null, couponOnly: false, brand: "all", sort: "price", q: "" };
+const brands = [...new Set(visible.map(p => p.brand))].sort((a, b) => a.localeCompare(b, "ja"));
+const hasCouponFilter = visible.some(p => !couponsOf(p).length);
+$("chips").insertAdjacentHTML("beforeend",
+  campaign.priceBands.map(b => `<button type="button" class="chip" data-band="${b.id}" aria-pressed="false">${esc(b.label)}</button>`).join("") +
+  (hasCouponFilter ? `<button type="button" class="chip" id="coupon-only" aria-pressed="false">クーポンあり</button>` : "") +
+  `<select class="chip" id="brand" aria-label="ブランド"><option value="all">ブランド：すべて</option>${brands.map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join("")}</select>` +
+  `<select class="chip" id="sort" aria-label="並べ替え"><option value="price">安い順</option><option value="discount">割引率が高い順</option><option value="name">商品名順</option></select>`);
+$("chips").addEventListener("click", e => {
+  const b = e.target.closest("[data-band]");
+  if (b) { state.band = state.band === b.dataset.band ? null : b.dataset.band; render(); }
+  if (e.target.closest("#coupon-only")) { state.couponOnly = !state.couponOnly; render(); }
+});
+$("brand").addEventListener("change", e => { state.brand = e.target.value; render(); });
+$("sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+$("search").addEventListener("input", e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+const card = p => `<article class="card">
+  <div class="card-top">${visual(p, "thumb")}
+    <div class="info">
+      <span class="sub">${esc(p.brand)}${p.spec ? "・" + esc(p.spec) : ""}</span>
+      <h4 class="name">${esc(p.name)}</h4>
+      <div class="price-row"><span class="price-label">${esc(campaign.priceLabel)}</span><span class="price">${yen(p.salePriceJpy)}</span>${p.discountPct ? `<span class="off">${pct(p.discountPct)}OFF</span>` : ""}${p.regularPriceJpy ? `<span class="regular">通常<s>${yen(p.regularPriceJpy)}</s></span>` : ""}</div>
+    </div>
+  </div>
+  ${ticket(p)}
+  <div class="card-foot"><span>${campaign.checkedAt ? "価格確認 " + md(campaign.checkedAt) + "・" : ""}クーポン条件は販売ページで</span><a class="buy" href="${esc(p.purchaseUrl)}" target="_blank" rel="noopener">販売ページへ ↗</a></div>
+</article>`;
+
+function render() {
+  document.querySelectorAll("[data-band]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.band === state.band)));
+  if ($("coupon-only")) $("coupon-only").setAttribute("aria-pressed", String(state.couponOnly));
+  const band = campaign.priceBands.find(b => b.id === state.band);
+  const max = band && band.max != null ? band.max : Infinity;
+  let list = visible.filter(p =>
+    (!band || (p.salePriceJpy >= band.min && p.salePriceJpy <= max)) &&
+    (!state.couponOnly || couponsOf(p).length) &&
+    (state.brand === "all" || p.brand === state.brand) &&
+    (!state.q || `${p.brand} ${p.name}`.toLowerCase().includes(state.q)));
+  const sorters = { price: (a, b) => a.salePriceJpy - b.salePriceJpy, discount: (a, b) => (b.discountPct || 0) - (a.discountPct || 0), name: (a, b) => a.name.localeCompare(b.name, "ja") };
+  list.sort(sorters[state.sort]);
+  const cats = [...new Set([...campaign.categoryOrder, ...visible.map(p => p.category)])];
+  $("count").textContent = `${list.length}品を表示中`;
+  $("shelves").innerHTML = list.length ? cats.map(c => {
+    const items = list.filter(p => p.category === c); if (!items.length) return "";
+    return `<section class="shelf"><h3>${esc(c)}の棚 <small>${items.length}品</small></h3><div class="grid">${items.map(card).join("")}</div></section>`;
+  }).join("") : `<p class="empty">条件に合う商品がありません。絞り込みを外してみてください。</p>`;
+}
+render();
+
+// クーポン一覧
+const couponMap = new Map();
+visible.forEach(p => couponsOf(p).forEach(c => { const k = c.kind + ":" + c.code; if (!couponMap.has(k)) couponMap.set(k, { ...c, items: [] }); couponMap.get(k).items.push(p); }));
+$("sheet-body").innerHTML = `<p class="sheet-note">割引額・最低購入金額・併用の可否などの条件は、各販売ページで確認してください。コードをタップするとコピーできます。</p>` +
+  [...couponMap.values()].sort((a, b) => a.label.localeCompare(b.label, "ja") || a.code.localeCompare(b.code)).map(c => `<div class="coupon-row">
+    <div class="top"><span class="kind">${esc(c.label)}</span><button type="button" class="code" data-copy="${esc(c.code)}">${esc(c.code)} コピー</button></div>
+    <div class="targets">対象 ${c.items.length}品：${c.items.map(p => esc(p.brand + " " + p.name)).join("、")}</div></div>`).join("");
+$("open-coupons").addEventListener("click", () => $("sheet").showModal());
+$("close-sheet").addEventListener("click", () => $("sheet").close());
+$("sheet").addEventListener("click", e => { if (e.target === $("sheet")) $("sheet").close(); });
+
+$("fine").innerHTML = `※ 表示価格は提供資料に記載された${esc(campaign.priceLabel)}です${campaign.checkedAt ? `（価格確認：${esc(campaign.checkedAt)}）` : ""}。実際の支払額はクーポン条件・送料・税・為替・在庫などで変わる場合があります。セール期間・価格は購入前に販売ページで最新情報を確認してください。<br>※ 商品画像は、利用許可を確認できた公式画像だけを掲載します。画像がない商品は、ブランド名とカテゴリのアイコンで表示しています。<br>しゃるのセール情報。`;
+
+// コピー
+let toastTimer;
+function toast(msg) { $("toast").textContent = msg; $("toast").classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => $("toast").classList.remove("show"), 1800); }
+async function copy(v) {
+  let ok = true;
+  try { if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(v); else throw 0; }
+  catch { try { const t = document.createElement("textarea"); t.value = v; t.style.position = "fixed"; t.style.left = "-9999px"; document.body.append(t); t.select(); ok = document.execCommand("copy"); t.remove(); } catch { ok = false; } }
+  toast(ok ? `コピーしました：${v}` : `コピーできませんでした。手で入力してください：${v}`);
+}
+document.addEventListener("click", e => { const c = e.target.closest("[data-copy]"); if (c) copy(c.dataset.copy); });
+
+})();
+</script>
 </body>
 </html>
