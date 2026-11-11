@@ -1,0 +1,75 @@
+name: Linsoul セールの見張り
+
+on:
+  schedule:
+    # 毎日 7:23（日本時間）
+    - cron: "23 22 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: linsoul
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pillow==11.0.0
+
+      - name: 価格・在庫の更新、終了と開始の判定
+        id: daily
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_USERNAME: ${{ vars.X_USERNAME }}
+        run: python scripts/linsoul_sale.py daily
+
+      - name: 更新を公開（main に反映）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add index.html data/linsoul-history.json data/linsoul-last-run.json
+          if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
+          git commit -m "Linsoul の価格・在庫を自動更新（$(TZ=Asia/Tokyo date +%F)）"
+          git push origin HEAD:main
+
+      - name: すでに下書きのプルリクエストがあるか確認
+        if: steps.daily.outputs.sale_detected == 'true'
+        id: open
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n=$(gh pr list --state open --search "head:linsoul-sale-draft" --json number --jq 'length')
+          echo "count=$n" >> "$GITHUB_OUTPUT"
+
+      - name: セールの下書きを作って知らせる
+        if: steps.daily.outputs.sale_detected == 'true' && steps.open.outputs.count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          branch="linsoul-sale-draft-$(TZ=Asia/Tokyo date +%Y%m%d)"
+          git checkout -b "$branch"
+          python scripts/linsoul_sale.py draft
+          git add index.html img/linsoul
+          git commit -m "下書き：Linsoul のセール商品を追加"
+          git push origin "$branch"
+          if ! gh pr create --base main --head "$branch" \
+               --title "【確認してください】Linsoul のセールを見つけました" \
+               --body-file data/linsoul-pr-body.md; then
+            gh issue create --title "【確認してください】Linsoul のセールを見つけました" \
+              --body "$(cat data/linsoul-pr-body.md)
+
+          下書きはブランチ \`$branch\` にあります。プルリクエストを自動で作れなかったので、次のリンクから作ってマージしてください：
+          https://github.com/${{ github.repository }}/compare/main...$branch"
+          fi
