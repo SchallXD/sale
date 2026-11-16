@@ -40,5 +40,12 @@
   "total": 809,
   "sale": true,
   "x_posts": 0
+ },
+ {
+  "date": "2026-11-16",
+  "discounted": 266,
+  "total": 804,
+  "sale": false,
+  "x_posts": 0
  }
 ]
