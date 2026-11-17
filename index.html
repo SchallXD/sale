@@ -39,7 +39,16 @@ a{color:var(--red)}a:hover{color:var(--red-dark)}
 .sales{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:10px}
 .sale-pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;background:var(--card);border:1.5px solid var(--ink);border-radius:999px;padding:4px 12px 4px 6px}
 .sale-pill .shop-tag{margin-right:0}
+.sale-pill{flex-wrap:wrap;row-gap:2px}
+.sale-pill small{white-space:nowrap}
 .sale-pill small{font-size:12px;font-weight:500;color:var(--muted)}
+.sale-pill.soon{border-style:dashed}
+.countdown{margin-top:12px;display:flex;flex-direction:column;gap:6px;padding:12px 14px;border:2px solid var(--ink);border-radius:6px;background:var(--card)}
+.countdown .cd-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:700}
+.countdown .cd-time{font-family:var(--display);font-size:clamp(26px,7vw,38px);line-height:1.1;color:var(--red);font-variant-numeric:tabular-nums}
+.countdown .cd-time small{font-family:"Zen Maru Gothic",sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin:0 4px 0 2px}
+.countdown p{margin:0;font-size:12px;color:var(--muted)}
+.soon-tag{display:inline-block;font-size:10px;font-weight:700;line-height:1;padding:3px 5px;margin-right:5px;border-radius:3px;border:1px dashed var(--red);color:var(--red);vertical-align:1px}
 .notice{margin:14px 0 0;padding:10px 12px;border:1.5px solid var(--red);border-radius:4px;background:var(--card);font-size:12px;line-height:1.7}
 .notice b{color:var(--red)}
 .special{margin:12px 0 0;padding:12px;border-radius:6px;background:var(--red);color:var(--card);display:flex;flex-direction:column;gap:8px}
@@ -162,7 +171,8 @@ dialog::backdrop{background:rgba(43,36,32,.45)}
   <span class="sign">本日のセール棚</span>
   <h1>しゃるのセール情報。</h1>
   <div class="meta" id="meta"></div>
-  <div class="sales" id="sales" aria-label="開催中のセール"></div>
+  <div class="sales" id="sales" aria-label="開催中・開催予定のセール"></div>
+  <div id="countdowns"></div>
   <p class="notice" id="notice" hidden=""></p>
   <div id="special"></div>
 </div></header>
@@ -206,11 +216,11 @@ const shopConf = p => (campaign.shops && campaign.shops[shopOf(p)]) || {};
 const isUsd = p => p.salePriceUsd != null;
 const saleText = p => isUsd(p) ? usd(p.salePriceUsd) + (p.priceFrom ? "〜" : "") : yen(p.salePriceJpy) + (p.priceFrom ? "〜" : "");
 const regText = p => isUsd(p) ? (p.regularPriceUsd ? usd(p.regularPriceUsd) : "") : (p.regularPriceJpy ? yen(p.regularPriceJpy) : "");
-const labelOf = p => shopConf(p).priceLabel || campaign.priceLabel;
+const labelOf = p => (shopConf(p).start && Date.parse(shopConf(p).start) > Date.now() ? `予告・${startText(shopConf(p).start)}から｜` : "") + (shopConf(p).priceLabel || campaign.priceLabel);
 const checkedOf = p => shopConf(p).checkedAt || campaign.checkedAt;
 // 絞り込み・並べ替えだけに使う円の目安（表示はしない）
 const jpyOf = p => isUsd(p) ? Math.round(p.salePriceUsd * (Number(campaign.usdJpy) || 150)) : p.salePriceJpy;
-const shopTag = p => `<span class="shop-tag${shopOf(p) === campaign.shop ? "" : " alt"}">${esc(shopOf(p))}</span>`;
+const shopTag = p => `<span class="shop-tag${shopOf(p) === campaign.shop ? "" : " alt"}">${esc(shopOf(p))}</span>` + (shopConf(p).start && Date.parse(shopConf(p).start) > Date.now() ? `<span class="soon-tag">${esc(startText(shopConf(p).start))}〜</span>` : "");
 const md = s => { if (!s) return ""; const d = new Date(s + "T00:00:00+09:00"); return isNaN(d) ? "" : (d.getMonth() + 1) + "/" + d.getDate(); };
 const ICONS = {
   "イヤホン": '<svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 6.5c4.5-1.8 10 1 10.5 6 .4 4-2.3 7-6 7.2-2.6.1-4.3-1.4-5.6-3.4"/><path d="M10 16.3c-1.3-2-1.8-4.4-1.4-6.4.3-1.4 1.2-2.6 2.4-3.4"/><path d="M8.7 11.5H5.5a1.5 1.5 0 0 0 0 3h3.6"/><path d="M15.5 19.7c.3 3.5 2.5 6 6.5 6.8"/><circle cx="15" cy="12.5" r="2.2"/></svg>',
@@ -220,7 +230,10 @@ const ICONS = {
 const icon = cat => ICONS[cat] || ICONS["イヤホン"];
 // セール期間（shops.<名前>.end）を過ぎたショップの商品は、データの更新を待たずに隠す
 // 開始前（shops.<名前>.start より前）も隠す
-const shopEnded = p => { const c = shopConf(p), n = Date.now(); return (!!c.end && n > Date.parse(c.end)) || (!!c.start && n < Date.parse(c.start)); };
+const shopEnded = p => { const c = shopConf(p), n = Date.now(); return (!!c.end && n > Date.parse(c.end)) || (!!c.start && n < Date.parse(c.start) && c.preview === false); };
+// 開始前のセール（予告）。shops.<名前>.start が未来
+const startsIn = c => c && c.start ? Date.parse(c.start) - Date.now() : 0;
+const startText = e => { const d = new Date(e); return isNaN(d) ? "" : d.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }); };
 const visible = products.filter(p => !p.hidden && !shopEnded(p));
 const liveShops = new Set(visible.map(shopOf));
 const couponsOf = p => Object.entries(campaign.couponKinds).filter(([k]) => p[k]).map(([k, label]) => ({ kind: k, label, code: p[k] }));
@@ -236,11 +249,23 @@ if (!visible.length) document.querySelector(".filter").hidden = true;
 $("meta").innerHTML = [visible.length ? `全${visible.length}品` : ""].filter(Boolean).map(s => `<span>${s}</span>`).join('<span aria-hidden="true">／</span>');
 // 開催中のセール（ショップごとの名前と終了日時）。終わったショップは出さない
 const endText = e => { const d = new Date(e); return isNaN(d) ? "" : `〜${d.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })}`; };
-$("sales").innerHTML = [...liveShops].map(k => { const c = (campaign.shops || {})[k] || {}; return `<span class="sale-pill"><span class="shop-tag${k === campaign.shop ? "" : " alt"}">${esc(k)}</span>${esc(c.saleName || "セール")}${c.end ? `<small>${esc(endText(c.end))}</small>` : ""}</span>`; }).join("");
+function renderSales() {
+  $("sales").innerHTML = [...liveShops].map(k => { const c = (campaign.shops || {})[k] || {}; const soon = startsIn(c) > 0;
+    return `<span class="sale-pill${soon ? " soon" : ""}"><span class="shop-tag${k === campaign.shop ? "" : " alt"}">${esc(k)}</span>${esc(c.saleName || "セール")}${soon ? `<small>${esc(startText(c.start))} スタート</small>` : c.end ? `<small>${esc(endText(c.end))}</small>` : ""}</span>`; }).join("");
+  const soonShops = [...liveShops].filter(k => startsIn((campaign.shops || {})[k]) > 0);
+  $("countdowns").innerHTML = soonShops.map(k => { const c = campaign.shops[k], ms = startsIn(c);
+    const d = Math.floor(ms / 86400000), h = Math.floor(ms % 86400000 / 3600000), m = Math.floor(ms % 3600000 / 60000);
+    const t = d >= 1 ? `${d}<small>日</small>${h}<small>時間</small>` : `${h}<small>時間</small>${m}<small>分</small>`;
+    return `<div class="countdown" role="timer"><span class="cd-head"><span class="shop-tag alt">${esc(k)}</span>${esc(c.saleName || "セール")} スタートまで</span><span class="cd-time">あと${t}</span><p>${esc(startText(c.start))} 開始。下の一覧で、セール対象の商品と予定価格を先にチェックできます。</p></div>`; }).join("");
+}
+renderSales();
+// 開始時刻をまたいだら表示（ラベル・価格の呼び方）を切り替えるため読み込み直す
+const nextStart = Math.min(...[...liveShops].map(k => startsIn((campaign.shops || {})[k])).filter(ms => ms > 0));
+if (isFinite(nextStart)) { setInterval(renderSales, 30000); if (nextStart < 2147483647) setTimeout(() => location.reload(), nextStart + 1000); }
 // しゃる専用クーポン（shops.<名前>.special）。そのショップのセール中、かつクーポンの有効期間中だけ出す
-const specialLive = c => c.special && (!c.special.start || Date.now() >= Date.parse(c.special.start)) && (!c.special.end || Date.now() <= Date.parse(c.special.end));
+const specialLive = c => c.special && (!c.special.end || Date.now() <= Date.parse(c.special.end));
 const specials = Object.entries(campaign.shops || {}).filter(([k, c]) => liveShops.has(k) && specialLive(c));
-$("special").innerHTML = specials.map(([k, c]) => `<div class="special"><span class="special-title"><span class="shop-tag">${esc(k)}</span>${esc(c.special.title)}</span><button type="button" class="code" data-copy="${esc(c.special.code)}" aria-label="${esc(c.special.title)} ${esc(c.special.code)} をコピー">${esc(c.special.code)}<span>タップでコピー</span></button><small>${esc(c.special.note || "")}</small></div>`).join("");
+$("special").innerHTML = specials.map(([k, c]) => `<div class="special"><span class="special-title"><span class="shop-tag">${esc(k)}</span>${esc(c.special.title)}${c.special.start && Date.parse(c.special.start) > Date.now() ? `（${esc(startText(c.special.start))}から使えます）` : ""}</span><button type="button" class="code" data-copy="${esc(c.special.code)}" aria-label="${esc(c.special.title)} ${esc(c.special.code)} をコピー">${esc(c.special.code)}<span>タップでコピー</span></button><small>${esc(c.special.note || "")}</small></div>`).join("");
 const notices = [campaign.draftNotice, ...Object.entries(campaign.shops || {}).filter(([k, c]) => liveShops.has(k) && c.notice).map(([, c]) => c.notice)].filter(Boolean);
 if (notices.length) { $("notice").hidden = false; $("notice").innerHTML = `<b>お知らせ：</b>${notices.map(esc).join("")}`; }
 
