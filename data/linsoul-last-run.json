@@ -1,8 +1,8 @@
 {
- "date": "2026-11-20",
+ "date": "2026-11-21",
  "discounted": 384,
- "baseline": 325.0,
- "baseline_days": 4,
+ "baseline": 384,
+ "baseline_days": 5,
  "live": false,
  "detected": false,
  "reason": "",
